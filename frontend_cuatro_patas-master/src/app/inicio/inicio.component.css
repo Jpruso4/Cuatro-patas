@@ -1,0 +1,53 @@
+#cajonIzq {
+    float: left;
+    padding: 0px 5px;
+}
+
+#cajonIzqFiltro {
+    float: left;
+    padding-left: 0px;
+}
+
+#cajonDer {
+    float: right;
+    margin-left: 5px;
+}
+
+#cajonDerFiltro {
+    float: right;
+    padding-left: 0px;
+}
+
+#form-vehiculo{
+    padding-top: 20px;
+}
+
+#form-filtros{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+#botonCrearVehiculo{
+    margin-top: 40px;
+}
+
+#botonFiltro{
+    margin-top: 10px;
+}
+
+#nombreCampo{
+    margin-top: 10px;
+}
+
+#encabezado{
+    background-color: #80A8D2;
+    color: white;
+}
+
+.eliminado{
+    background-color: #CCC;
+}
+
+.espacioAbajoFiltros{
+    margin-bottom: -30px;
+}

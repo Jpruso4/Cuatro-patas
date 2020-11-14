@@ -1,0 +1,203 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    {{titulo}}
+                </h1>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<div class="row  mt-4">
+    <h3 class="col-sm-6">{{titulo}}</h3>
+    <div class="col-sm-6" [hidden]="idAdopcion">
+        <input (click)="limpiarCampos()" type="button" value="{{tituloBtnLimpiarCampos}}" id="cajonDer" class="col-sm-6 btn">
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <form [formGroup]="formAdopcion" (ngSubmit)="guardarAdopcion()" class="col-sm-12 jumbotron" id="form-adopcion"
+            novalidate>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>Adoptante:</strong> {{nombreUsuario}}                        
+                    </label>
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>Mascota:</strong> {{nombreMascota}}                        
+                    </label>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Dirección:</strong>
+                        <div *ngIf="formAdopcion.get('direccion').errors && formAdopcion.get('direccion').dirty" id="cajonDer">
+                            <span *ngIf="formAdopcion.get('direccion').hasError('required')" class="badge badge-danger">
+                                La dirección es obligatoria.
+                            </span>
+                            <span *ngIf="formAdopcion.get('direccion').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 5 caracteres.
+                            </span>
+                            <span *ngIf="formAdopcion.get('direccion').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 30 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="direccion" type="text" class="form-control">
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Ciudad:</strong>
+                        <div *ngIf="formAdopcion.get('ciudad').errors && formAdopcion.get('ciudad').dirty" id="cajonDer">
+                            <span *ngIf="formAdopcion.get('ciudad').hasError('required')" class="badge badge-danger">
+                                La ciudad es obligatoria.
+                            </span>
+                            <span *ngIf="formAdopcion.get('ciudad').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 3 caracteres.
+                            </span>
+                            <span *ngIf="formAdopcion.get('ciudad').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 30 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="ciudad" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Barrio:</strong>
+                        <div *ngIf="formAdopcion.get('barrio').errors && formAdopcion.get('barrio').dirty" id="cajonDer">
+                            <span *ngIf="formAdopcion.get('barrio').hasError('required')" class="badge badge-danger">
+                                El barrio es obligatorio.
+                            </span>
+                            <span *ngIf="formAdopcion.get('barrio').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 3 caracteres.
+                            </span>
+                            <span *ngIf="formAdopcion.get('barrio').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 30 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="barrio" type="text" class="form-control">
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Estrato socioeconómico:</strong>
+                        <div *ngIf="formAdopcion.get('estrato').errors && formAdopcion.get('estrato').dirty" id="cajonDer">
+                            <span *ngIf="formAdopcion.get('estrato').hasError('required')" class="badge badge-danger">
+                                El estrato es obligatorio
+                            </span>
+                            <span *ngIf="formAdopcion.get('estrato').hasError('minlength')" class="badge badge-danger">
+                                Sólo se puede ingresar 1 carácter.
+                            </span>
+                            <span *ngIf="formAdopcion.get('estrato').hasError('maxlength')" class="badge badge-danger">
+                                Sólo se puede ingresar 1 carácter.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="estrato" type="text" class="form-control"
+                        onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* ¿Cuántas mascotas tienes?:</strong>
+                        <div *ngIf="formAdopcion.get('cantidadMascotas').errors && formAdopcion.get('cantidadMascotas').dirty"
+                            id="cajonDer">
+                            <span *ngIf="formAdopcion.get('cantidadMascotas').hasError('required')" class="badge badge-danger">
+                                El Cantidad de  es obligatorio
+                            </span>
+                            <span *ngIf="formAdopcion.get('cantidadMascotas').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 1 carácter.
+                            </span>
+                            <span *ngIf="formAdopcion.get('cantidadMascotas').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 2 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="cantidadMascotas" type="text" class="form-control" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* ¿Por qué quieres adoptar?:</strong>
+                        <div *ngIf="formAdopcion.get('porqueAdoptar').errors && formAdopcion.get('porqueAdoptar').dirty"
+                            id="cajonDer">
+                            <span *ngIf="formAdopcion.get('porqueAdoptar').hasError('required')" class="badge badge-danger">
+                                El por qué adoptar es obligatorio.
+                            </span>
+                            <span *ngIf="formAdopcion.get('porqueAdoptar').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 5 caracteres.
+                            </span>
+                            <span *ngIf="formAdopcion.get('porqueAdoptar').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 50 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="porqueAdoptar" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label> <strong>* ¿Primera vez que adoptas?:</strong> </label>
+                    <div>
+                        <label class="form-check-inline radios-texto">
+                            Si: <input class="form-check-input ml-2" type="radio" name="primeraVezAdopta" [value]="1" formControlName="primeraVezAdopta">
+                        </label>
+                        <label class="form-check-inline radios-texto">
+                            No: <input class="form-check-input ml-2" type="radio" name="primeraVezAdopta" [value]="0" formControlName="primeraVezAdopta">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label> <strong>* ¿Cuentas con los recursos económicos para sostener una mascota?:</strong> </label>
+                    <div>
+                        <label class="form-check-inline radios-texto">
+                            Si: <input class="form-check-input ml-2" type="radio" name="recursosEconomicos" [value]="1" formControlName="recursosEconomicos">
+                        </label>
+                        <label class="form-check-inline radios-texto">
+                            No: <input class="form-check-input ml-2" type="radio" name="recursosEconomicos" [value]="0" formControlName="recursosEconomicos">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label> <strong>* ¿Tu hogar es un lugar seguro para una mascota?:</strong> </label>
+                    <div>
+                        <label class="form-check-inline radios-texto">
+                            Si: <input class="form-check-input ml-2" type="radio" name="hogarSeguro" [value]="1" formControlName="hogarSeguro">
+                        </label>
+                        <label class="form-check-inline radios-texto">
+                            No: <input class="form-check-input ml-2" type="radio" name="hogarSeguro" [value]="0" formControlName="hogarSeguro">
+                        </label>
+                    </div>
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label> <strong>* ¿Todos los habitantes de tu hogar están de acuerdo con adoptar una mascota?:</strong> </label>
+                    <div>
+                        <label class="form-check-inline radios-texto">
+                            Si: <input class="form-check-input ml-2" type="radio" name="todosSeguros" [value]="1" formControlName="todosSeguros">
+                        </label>
+                        <label class="form-check-inline radios-texto">
+                            No: <input class="form-check-input ml-2" type="radio" name="todosSeguros" [value]="0" formControlName="todosSeguros">
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <input type="submit" value="{{titulo}}" [disabled]="formAdopcion.invalid" id="botonCrearAdopcion" class="col-sm-4 btn btn-success mt-4">
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+#form-adopcion label{
+    margin-top: 10px;
+}
+
+#cajonIzq {
+    float: left;
+    padding: 0px 5px;
+}
+
+#cajonIzqFiltro {
+    float: left;
+    padding-left: 0px;
+}
+
+#cajonDer {
+    float: right;
+    margin-left: 5px;
+}
+
+#cajonDerFiltro {
+    float: right;
+    padding-left: 0px;
+}
+
+#form-adopcion{
+    padding-top: 20px;
+}
+
+#form-filtros{
+    padding-top: 6px;
+    padding-bottom: 6px;
+}
+
+#botonCrearAdopcion{
+    margin-top: 40px;
+}
+
+#botonFiltro{
+    margin-top: 10px;
+}
+
+#nombreCampo{
+    margin-top: 10px;
+}
+
+#encabezado{
+    background-color: #80A8D2;
+    color: white;
+}
+
+.eliminado{
+    background-color: #CCC;
+}
+
+.cajonImagen{
+    display: block;
+    width: 100%;
+    padding: 0.275rem 0.25rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+}
+
+.tablaCentrada{
+    vertical-align: middle;
+}
+
+.radios-texto{
+    margin: 0px 10px;
+}

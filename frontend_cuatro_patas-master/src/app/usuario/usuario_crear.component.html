@@ -1,0 +1,163 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    {{titulo}}
+                </h1>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<div class="row  mt-4">
+    <h3 class="col-sm-6">{{titulo}}</h3>
+    <div class="col-sm-6" [hidden]="idUsuario">
+        <input (click)="limpiarCampos()" type="button" value="{{tituloBtnLimpiarCampos}}" id="cajonDer" class="col-sm-6 btn">
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <form [formGroup]="formUsuario" (ngSubmit)="guardarUsuario()" class="col-sm-12 jumbotron" id="form-usuario"
+            novalidate>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Tipo de identificación:</strong>
+                        <div *ngIf="formUsuario.get('tipoIdentificacion').errors && formUsuario.get('tipoIdentificacion').dirty"
+                            id="cajonDer">
+                            <span *ngIf="formUsuario.get('tipoIdentificacion').hasError('required')" class="badge badge-danger">
+                                El tipo de Identificación es obligatorio
+                            </span>
+                        </div>
+                    </label>
+                    <select formControlName="tipoIdentificacion" class="form-control" aria-placeholder="Seleccionar">
+                        <option *ngFor="let opcion of opcionesTipoDocumento" [ngValue]="opcion">{{opcion}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Número de identificación:</strong>
+                        <div *ngIf="formUsuario.get('identificacion').errors && formUsuario.get('identificacion').dirty" id="cajonDer">
+                            <span *ngIf="formUsuario.get('identificacion').hasError('required')" class="badge badge-danger">
+                                La identificación es obligatoria
+                            </span>
+                            <span *ngIf="formUsuario.get('identificacion').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 15 caracteres.
+                            </span>
+                            <span *ngIf="formUsuario.get('identificacion').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 5 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="identificacion" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                        type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Primer nombre:</strong>
+                        <div *ngIf="formUsuario.get('primerNombre').errors && formUsuario.get('primerNombre').dirty" id="cajonDer">
+                            <span *ngIf="formUsuario.get('primerNombre').hasError('required')" class="badge badge-danger">
+                                El primer nombre es obligatorio
+                            </span>
+                            <span *ngIf="formUsuario.get('primerNombre').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 2 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="primerNombre" type="text" class="form-control">
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>Segundo nombre:</strong>
+                    </label>
+                    <input formControlName="segundoNombre" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Primer apellido:</strong>
+                        <div *ngIf="formUsuario.get('primerApellido').errors && formUsuario.get('primerApellido').dirty" id="cajonDer">
+                            <span *ngIf="formUsuario.get('primerApellido').hasError('required')" class="badge badge-danger">
+                                El primer apellido es obligatorio
+                            </span>
+                            <span *ngIf="formUsuario.get('primerApellido').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 2 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="primerApellido" type="text" class="form-control">
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label id="nombreCampo">
+                        <strong>Segundo apellido:</strong>
+                    </label>
+                    <input formControlName="segundoApellido" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Correo electrónico:</strong>
+                        <div *ngIf="formUsuario.get('correoElectronico').errors && formUsuario.get('correoElectronico').dirty"
+                            id="cajonDer">
+                            <span *ngIf="formUsuario.get('correoElectronico').hasError('required')" class="badge badge-danger">
+                                El correo electrónico es obligatorio
+                            </span>
+                            <span *ngIf="formUsuario.get('correoElectronico').hasError('pattern')" class="badge badge-danger">
+                                Ingrese formato válido, ejemplo@email.com
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="correoElectronico" type="text" class="form-control">
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong [hidden]="idUsuario">* </strong>
+                        <strong>Clave:</strong>
+                        <div *ngIf="formUsuario.get('clave').errors && formUsuario.get('clave').dirty" id="cajonDer">
+                            <span *ngIf="formUsuario.get('clave').hasError('required')" class="badge badge-danger">
+                                La clave es obligatoria
+                            </span>
+                            <span *ngIf="formUsuario.get('clave').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 8 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="clave" type="password" class="form-control">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Celular:</strong>
+                        <div *ngIf="formUsuario.get('celular').errors && formUsuario.get('celular').dirty" id="cajonDer">
+                            <span *ngIf="formUsuario.get('celular').hasError('required')" class="badge badge-danger">
+                                El celular es obligatorio
+                            </span>
+                            <span *ngIf="formUsuario.get('celular').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 12 caracteres.
+                            </span>
+                            <span *ngIf="formUsuario.get('celular').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 10 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="celular" onkeypress='return event.charCode >= 48 && event.charCode <= 57' type="text"
+                        class="form-control">
+                </div>
+                <div class="col-sm-5"></div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <input type="submit" value="{{titulo}}" [disabled]="formUsuario.invalid" id="botonCrearUsuario" class="col-sm-5 btn btn-success">
+            </div>
+        </form>
+    </div>
+</div>

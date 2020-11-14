@@ -1,0 +1,110 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-start">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    El amor es una palabra<br> de cuatro patas.
+                </h1>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+
+<!-- Start callto-top Area -->
+<section class="callto-top-area section-gap">
+    <div class="container">
+        <div class="row justify-content-between callto-top-wrap pt-40 pb-40">
+            <div class="col-lg-8 callto-top-left">
+                <h1>¡Mira todos los animales que están esperando por ti!</h1>
+            </div>
+        </div>
+        <div class="row" *ngIf="listaMascotas">
+            <div class="col-md-4 mb-3" *ngFor="let mascota of listaMascotas">
+                <img class="col-md-12" src="{{mascota.urlImagen}}" width="350" height="360">
+                <h3 class="d-flex justify-content-center">{{mascota.nombre}}.</h3>
+                <h4 class="d-flex justify-content-center">{{mascota.genero}} - {{mascota.edad}} años.</h4>
+                <div  class="d-flex justify-content-center">
+                    <modal-animal idMascota="{{mascota.id}}" nombre="{{mascota.nombre}}" edad="{{mascota.edad}}" genero="{{mascota.genero}}" tamanio="{{mascota.tamanio}}" 
+                        color="{{mascota.color}}" personalidad="{{mascota.personalidad}}" raza="{{mascota.raza}}" urlImagen="{{mascota.urlImagen}}"></modal-animal>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="!listaMascotas">
+            En estos momentos no hay mascotas para adoptar.
+        </div>
+    </div>
+</section>
+<!-- End callto-top Area -->
+
+
+
+<!-- Start testomial Area -->
+<section class="testomial-area section-gap" id="testimonail">
+    <div class="container">
+        <div class="row d-flex justify-content-center">
+            <div class="menu-content pb-60 col-lg-8">
+                <div class="title text-center">
+                    <h1 class="mb-10">¿Quiénes somos?</h1>
+                    <p>Cuatro Patas es el esfuerzo de un grupo de amigos por ayudar a los miles de animales que se
+                        encuentran
+                        desprotegidos en las calles colombianas. Nuestro objetivo principal es, por medio de la página,
+                        promover
+                        la adopción de mascotas.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="single-testimonial col-md-4">
+                <img class="mx-auto" src="assets/img/t1.png" alt="">
+                <p class="desc">
+                    Nuestros compañeros perfectos nunca tienen menos de cuatro patas, por eso los amo y quiero
+                    ayudarlos a
+                    tener una vida feliz.
+                </p>
+                <h4>Alejandra García</h4>
+
+            </div>
+            <div class="single-testimonial col-md-4">
+                <img class="mx-auto" src="assets/img/t2.png" alt="">
+                <p class="desc">
+                    El día más feliz de mi vida fue cuando di a la primera mascota en adopción. Desde entonces supe
+                    que quería
+                    dedicarme a ello.
+                </p>
+                <h4>Carolina López</h4>
+            </div>
+            <div class="single-testimonial col-md-4">
+                <img class="mx-auto" src="assets/img/t3.png" alt="">
+                <p class="desc">
+                    Los animales son mis amigos, son quienes equilibran y completan mi mundo. Quiero que tengan una
+                    vida digna
+                    y llena de felicidad.
+                </p>
+                <h4>Natalia Alzate</h4>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End testomial Area -->
+
+<!-- Start calltoaction Area -->
+<section class="calltoaction-area section-gap relative">
+    <div class="container">
+        <div class="overlay overlay-bg"></div>
+        <div class="row align-items-center justify-content-center">
+            <h1 class="text-white">Adoptar: una forma de salvar vidas</h1>
+            <p class="text-white">
+                No compres, ¡adopta! Adoptando salvas una vida inocente. Tan solo escoge la mascota de la cual quieres
+                recibir
+                todo su amor y compañía, diligencia el formulario y en poco tiempo nos comunicaremos contigo.
+            </p>
+
+        </div>
+    </div>
+</section>
+
+<!-- End calltoaction Area -->

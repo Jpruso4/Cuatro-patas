@@ -1,0 +1,48 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-start">
+            <div class="about-content col-lg-12">
+                <div class="contenedor_principal">
+                    <h1>Iniciar Sesión</h1>
+                
+                    <form [formGroup]="formLogin" (ngSubmit)="login()" class="formulario">
+                        <label>
+                            <strong>Número de identificación:</strong>
+                            <div *ngIf="formLogin.get('identificacion').errors && formLogin.get('identificacion').dirty" id="cajonDer">
+                                <span *ngIf="formLogin.get('identificacion').hasError('required')" class="badge badge-danger">
+                                    La identificación es obligatoria
+                                </span>
+                                <span *ngIf="formLogin.get('identificacion').hasError('maxlength')" class="badge badge-danger">
+                                    Máximo 15 caracteres.
+                                </span>
+                                <span *ngIf="formLogin.get('identificacion').hasError('minlength')" class="badge badge-danger">
+                                    Mínimo 5 caracteres.
+                                </span>
+                            </div>
+                        </label>
+                        <input formControlName="identificacion" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                            type="text" class="form-control">
+                        <label>
+                            <strong>Clave:</strong>
+                            <div *ngIf="formLogin.get('clave').errors && formLogin.get('clave').dirty" id="cajonDer">
+                                <span *ngIf="formLogin.get('clave').hasError('required')" class="badge badge-danger">
+                                    La clave es obligatoria
+                                </span>
+                                <span *ngIf="formLogin.get('clave').hasError('minlength')" class="badge badge-danger">
+                                    Mínimo 8 caracteres.
+                                </span>
+                            </div>
+                        </label>
+                        <input formControlName="clave" type="password" class="form-control">
+                        <a [routerLink]="['../registrarse']" class="link_R">Regístrate</a>
+                        <input type="submit" value="Ingresar" class="btn_L">
+                        <p class="txt_end">Sistema de Login y Registro</p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->

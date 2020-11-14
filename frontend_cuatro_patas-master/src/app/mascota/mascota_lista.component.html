@@ -1,0 +1,194 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    Lista de mascotas
+                </h1>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<div class="row mt-4">
+    <h3 class="col-sm-8">{{titulo}}</h3>
+    <div class="col-sm-4">
+        <button id="cajonDer" class="btn col-sm-6 mb-4" type="button" (click)="isCollapsed = !isCollapsed"
+            [attr.aria-expanded]="!isCollapsed" aria-controls="collapse">Filtros</button>
+    </div>
+</div>
+<div class="collapse" [ngbCollapse]="isCollapsed">
+    <div class="container-fluid">
+        <div class="row">
+            <form [formGroup]="formFiltros" class="col-sm-12 jumbotron" id="form-filtros" novalidate>
+                <div class="col-sm-3" id="cajonIzqFiltro">
+                    <label>Nombre:</label>
+                    <div class="input-group">
+                        <input formControlName="nombre" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonIzqFiltro">
+                    <label>Raza:</label>
+                    <div class="input-group">
+                        <input formControlName="raza" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonIzqFiltro">
+                    <label>Edad:</label>
+                    <div class="input-group">
+                        <input formControlName="edad" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                            class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonIzqFiltro">
+                    <label>Género:</label>
+                    <div class="input-group">
+                        <input formControlName="genero" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonIzqFiltro">
+                    <label>Tamaño:</label>
+                    <div class="input-group">
+                        <input formControlName="tamanio" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonIzqFiltro">
+                    <label>Personalidad:</label>
+                    <div class="input-group">
+                        <input formControlName="personalidad" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonIzqFiltro">
+                    <label>Color:</label>
+                    <div class="input-group">
+                        <input formControlName="color" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonIzqFiltro">
+                    <label>Estado:</label>
+                    <div class="input-group">
+                        <input formControlName="estado" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonDerFiltro">
+                    <label></label>
+                    <div class="input-group">
+                        <input type="submit" (click)="limpiarFiltros()" value="Limpiar" id="botonFiltro" class="form-control btn">
+                    </div>
+                </div>
+                <div class="col-sm-3" id="cajonDerFiltro">
+                    <label></label>
+                    <div class="input-group">
+                        <input type="submit" (click)="obtenerMascotas()" value="Filtrar" id="botonFiltro" class="form-control btn btn-pill btn-primary">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<hr>
+<div style="overflow-x:auto;">
+    <table class="table table-hover">
+        <thead id="encabezado">
+            <tr>
+                <th>Imágen</th>
+                <th>Fecha de creación</th>
+                <th>Nombre</th>
+                <th>Raza</th>
+                <th>Edad</th>
+                <th>Genero</th>
+                <th>Tanaño</th>
+                <th>Personalidad</th>
+                <th>Color</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody *ngIf="listaMascotas">
+            <tr *ngFor="let mascota of listaMascotas">
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    <img src="{{mascota.urlImagen}}" alt="imagen animal" width="250" height="260">
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.createdAt | date }}
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.nombre }}
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.raza }}
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.edad }} años
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.genero }}
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.tamanio }}
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.personalidad }}
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.color }}
+                </td>
+                <td class="tablaCentrada" (click)="mascota.estado === 'Activo' ? detalleMascota( mascota.id ) : null" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}">
+                    {{ mascota.estado }}
+                </td>
+                <td class="tablaCentrada" *ngIf="mascota.estado === 'Activo'" (click)="asignarIdMascota( mascota.id )" data-toggle="modal"
+                    data-target="#exampleModal" data-whatever="@mdo">
+                    <span class="oi oi-trash" data-toggle="modal" data-target="#exampleModal" data-whatever="@mdo" title="trash"
+                        aria-hidden="true">
+                    </span>
+                </td>
+                <td class="tablaCentrada" *ngIf="mascota.estado === 'Inactivo'" [ngClass]="{'eliminado' : mascota.estado === 'Inactivo'}"></td>
+            </tr>
+        </tbody>
+        <tbody *ngIf="!listaMascotas">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>No hay mascotas</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<ngb-pagination class="d-flex justify-content-center" [collectionSize]="paginas" [pageSize]="10" [maxSize]="3" [(page)]="pagina"
+    aria-label="Default pagination" (pageChange)="cambiarPagina($event)"></ngb-pagination>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="exampleModalLabel">Confirmación</h3>
+            </div>
+            <div class="modal-body row">
+                <form>
+                    <div class="form-group col-sm-12 offset-3">
+                        <span for="recipient-name">
+                            <h4> ¿Desea eliminar el registro? </h4>
+                        </span>
+                        <p>Ésta acción no se puede deshacer.</p>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="eliminarMascota()">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>

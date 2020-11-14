@@ -1,0 +1,166 @@
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+    <div class="overlay overlay-bg"></div>
+    <div class="container">
+        <div class="row d-flex align-items-center justify-content-center">
+            <div class="about-content col-lg-12">
+                <h1 class="text-white">
+                    {{titulo}}
+                </h1>
+
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End banner Area -->
+<div class="row  mt-4">
+    <h3 class="col-sm-6">{{titulo}}</h3>
+    <div class="col-sm-6" [hidden]="idMascota">
+        <input (click)="limpiarCampos()" type="button" value="{{tituloBtnLimpiarCampos}}" id="cajonDer" class="col-sm-6 btn">
+    </div>
+</div>
+<hr>
+<div class="container-fluid">
+    <div class="row">
+        <form [formGroup]="formMascota" (ngSubmit)="guardarMascota()" class="col-sm-12 jumbotron" id="form-mascota"
+            novalidate>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* nombre:</strong>
+                        <div *ngIf="formMascota.get('nombre').errors && formMascota.get('nombre').dirty" id="cajonDer">
+                            <span *ngIf="formMascota.get('nombre').hasError('required')" class="badge badge-danger">
+                                El nombre es obligatorio
+                            </span>
+                            <span *ngIf="formMascota.get('nombre').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 1 carácter.
+                            </span>
+                            <span *ngIf="formMascota.get('nombre').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 30 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="nombre" type="text" class="form-control">
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Raza:</strong>
+                        <div *ngIf="formMascota.get('raza').errors && formMascota.get('raza').dirty" id="cajonDer">
+                            <span *ngIf="formMascota.get('raza').hasError('required')" class="badge badge-danger">
+                                La raza es obligatoria
+                            </span>
+                            <span *ngIf="formMascota.get('raza').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 1 carácter.
+                            </span>
+                            <span *ngIf="formMascota.get('raza').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 30 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="raza" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Edad:</strong>
+                        <div *ngIf="formMascota.get('edad').errors && formMascota.get('edad').dirty" id="cajonDer">
+                            <span *ngIf="formMascota.get('edad').hasError('required')" class="badge badge-danger">
+                                La edad es obligatoria
+                            </span>
+                            <span *ngIf="formMascota.get('edad').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 1 carácter.
+                            </span>
+                            <span *ngIf="formMascota.get('edad').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 2 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="edad" type="text" class="form-control"
+                        onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Genero:</strong>
+                        <div *ngIf="formMascota.get('genero').errors && formMascota.get('genero').dirty" id="cajonDer">
+                            <span *ngIf="formMascota.get('genero').hasError('required')" class="badge badge-danger">
+                                El genero es obligatorio
+                            </span>
+                        </div>
+                    </label>
+                    <select formControlName="genero" class="form-control" aria-placeholder="Seleccionar">
+                        <option *ngFor="let opcion of opcionesGenero" [ngValue]="opcion">{{opcion}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Tamaño:</strong>
+                        <div *ngIf="formMascota.get('tamanio').errors && formMascota.get('tamanio').dirty"
+                            id="cajonDer">
+                            <span *ngIf="formMascota.get('tamanio').hasError('required')" class="badge badge-danger">
+                                El tamaño es obligatorio
+                            </span>
+                            <span *ngIf="formMascota.get('tamanio').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 3 caracteres.
+                            </span>
+                            <span *ngIf="formMascota.get('tamanio').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 30 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="tamanio" type="text" class="form-control">
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Personalidad:</strong>
+                        <div *ngIf="formMascota.get('personalidad').errors && formMascota.get('personalidad').dirty" id="cajonDer">
+                            <span *ngIf="formMascota.get('personalidad').hasError('required')" class="badge badge-danger">
+                                La personalidad es obligatoria
+                            </span>
+                            <span *ngIf="formMascota.get('personalidad').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 3 caracteres.
+                            </span>
+                            <span *ngIf="formMascota.get('personalidad').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 50 caracteres.
+                            </span>
+                        </div>                        
+                    </label>
+                    <input formControlName="personalidad" type="text" class="form-control">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Color:</strong>
+                        <div *ngIf="formMascota.get('color').errors && formMascota.get('color').dirty" id="cajonDer">
+                            <span *ngIf="formMascota.get('color').hasError('required')" class="badge badge-danger">
+                                El color es obligatorio
+                            </span>
+                            <span *ngIf="formMascota.get('color').hasError('maxlength')" class="badge badge-danger">
+                                Máximo 3 caracteres.
+                            </span>
+                            <span *ngIf="formMascota.get('color').hasError('minlength')" class="badge badge-danger">
+                                Mínimo 30 caracteres.
+                            </span>
+                        </div>
+                    </label>
+                    <input formControlName="color" type="text" class="form-control">
+                </div>
+                <div class="col-sm-5" id="cajonIzq">
+                    <label>
+                        <strong>* Imagen:</strong>
+                        <span *ngIf="formMascota.get('urlImagen').hasError('required')" class="badge badge-danger">
+                            La urlImagen es obligatoria
+                        </span>
+                    </label>
+                    <input ng2FileSelect type="file" [uploader]="uploader" class="cajonImagen">
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <input type="submit" value="{{titulo}}" [disabled]="formMascota.invalid" id="botonCrearMascota" class="col-sm-4 btn btn-success mt-4">
+            </div>
+        </form>
+    </div>
+</div>

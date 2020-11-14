@@ -1,0 +1,36 @@
+<div id="content" class="col-lg-12">
+  <div id="header">
+    <nav id="nav" class="col-lg-12">
+      <ul class="pull-right">
+        <div [hidden]="!mostrarInciarSesion" class="pull-left color-nombre mt-1 mr-4">
+          <span>Hola, {{currentUser.primerNombre}} {{currentUser.primerApellido}}</span>
+        </div>
+        <li><a [routerLink]="['inicio']" [routerLinkActive]="['activado']">Inicio</a></li>
+        <li><a [routerLink]="['porque-adoptar']" [routerLinkActive]="['activado']">¿Por qué adoptar?</a></li>
+        <li><a [routerLink]="['contactanos']" [routerLinkActive]="['activado']">Contáctanos</a></li>
+        <li><a [hidden]="!mostrarMisAdopciones" [routerLink]="['mis-adopciones']" [routerLinkActive]="['activado']">Mis adopciones</a></li>
+        <li ngbDropdown [hidden]="!usuarioAdmin">
+          <a ngbDropdownToggle id="desplegable" role="button"> Tablas Maestros </a>
+          <div ngbDropdownMenu aria-labelledby="desplegable">
+            <a class="dropdown-item"[routerLink]="['lista-usuarios']" [routerLinkActive]="['activado']">Lista Usuarios</a>
+            <a class="dropdown-item"[routerLink]="['crear-mascota']" [routerLinkActive]="['activado']">Crear Mascota</a>
+            <a class="dropdown-item"[routerLink]="['lista-mascotas']" [routerLinkActive]="['activado']">Lista Mascotas</a>
+            <a class="dropdown-item"[routerLink]="['lista-adopciones']" [routerLinkActive]="['activado']">Lista Adopciones</a>
+          </div>
+        </li>
+        <li [hidden]="mostrarInciarSesion"><a [routerLink]="['login']" [routerLinkActive]="['activado']">Iniciar
+            Sesión</a></li>
+        <li [hidden]="!mostrarInciarSesion"><a (click)="logout()">Cerrar Sesión</a></li>
+      </ul>
+      <div id="logo" class="pull-left ml-3">
+        <a [routerLink]="['inicio']"><img src="assets/img/CuatroPatas.png" width="104" height="100" alt=""
+            title="" /></a>
+      </div>
+    </nav>
+  </div>
+  <!-- <br> -->
+  <section id="main" class="col-lg-12">
+    <lib-ngx-notification></lib-ngx-notification>
+    <router-outlet></router-outlet>
+  </section>
+</div>
